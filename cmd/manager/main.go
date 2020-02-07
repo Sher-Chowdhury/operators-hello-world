@@ -37,6 +37,9 @@ var (
 	metricsPort         int32 = 8383
 	operatorMetricsPort int32 = 8686
 )
+
+// here we're creating a new log object which will attach each log entry with the label 'cmd'.
+// that's to help work out which folder this log message is coming from.
 var log = logf.Log.WithName("cmd")
 
 func printVersion() {
@@ -67,6 +70,7 @@ func main() {
 	// uniform and structured logs.
 	logf.SetLogger(zap.Logger())
 
+	// this is calling the printVersion function defined above.
 	printVersion()
 
 	namespace, err := k8sutil.GetWatchNamespace()
@@ -74,6 +78,7 @@ func main() {
 		log.Error(err, "Failed to get watch namespace")
 		os.Exit(1)
 	}
+	log.Info(fmt.Sprintf("Sher - The value namespace is set to %s", namespace))
 
 	// Get a config to talk to the apiserver
 	cfg, err := config.GetConfig()
