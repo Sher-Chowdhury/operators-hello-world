@@ -22,6 +22,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/source"
 )
 
+// here we're creat a log object. using the logf package
 var log = logf.Log.WithName("controller_memcached")
 
 /**
@@ -87,7 +88,15 @@ type ReconcileMemcached struct {
 // The Controller will requeue the Request to be processed again if the returned error is non-nil or
 // Result.Requeue is true, otherwise upon completion it will remove the work from the queue.
 func (r *ReconcileMemcached) Reconcile(request reconcile.Request) (reconcile.Result, error) {
+	// this configures the logging tool. It uses a varation of the standard log package:
+	// https://github.com/kubernetes-sigs/controller-runtime/tree/master/pkg/log
+	// Here we're saying that every time we output a log entry, also provide info about:
+	// - what is the name of the CR object in question
+	// - what is the name of the namespace that CR object lives in.
+
 	reqLogger := log.WithValues("Request.Namespace", request.Namespace, "Request.Name", request.Name)
+
+	// This tests the above configuration is working.
 	reqLogger.Info("Reconciling Memcached")
 
 	// Fetch the Memcached instance
