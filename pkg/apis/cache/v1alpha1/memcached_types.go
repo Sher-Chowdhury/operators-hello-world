@@ -17,6 +17,12 @@ type MemcachedSpec struct {
 
 	// Size is the size of the memcached deployment
 	Size int32 `json:"size"`
+	// This is made up of 3 fields:
+	// - the name of the variable from within the operator, "Size"
+	// - the date type, int32
+	// - the variable name, as specified from within the cr (or it's yaml file).
+	// This essentially maps a value in a cr.yaml file to a golang variable, which 
+	// can then be used inside the operator's golang code
 }
 
 // MemcachedStatus defines the observed state of Memcached
