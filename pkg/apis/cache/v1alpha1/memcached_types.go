@@ -34,6 +34,7 @@ type MemcachedStatus struct {
 	// Nodes are the names of the memcached pods
 	Nodes []string `json:"nodes"`
 	// Similar as before, but 'nodes' is the info reported back from the instantiated cr object itself. 
+	// it's displayed when you run: kubctl get cr-type cr-name -o yaml
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
