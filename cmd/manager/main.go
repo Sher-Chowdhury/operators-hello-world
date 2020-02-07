@@ -86,6 +86,7 @@ func main() {
 		log.Error(err, "")
 		os.Exit(1)
 	}
+	log.Info(fmt.Sprintf("Sherlog - The value 'cfg' is set to %s", cfg))
 
 	ctx := context.TODO()
 	// Become the leader before proceeding
@@ -120,6 +121,7 @@ func main() {
 	}
 
 	// Add the Metrics Service
+	// this is a function that's defined further below.
 	addMetrics(ctx, cfg, namespace)
 
 	log.Info("Starting the Cmd.")
