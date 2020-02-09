@@ -8,6 +8,8 @@ import (
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // MemcachedSpec defines the desired state of Memcached
+// here's an example: https://gobyexample.com/json
+// Also see: https://github.com/Sher-Chowdhury/gsg_structs/blob/master/main.go
 type MemcachedSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
@@ -15,6 +17,12 @@ type MemcachedSpec struct {
 
 	// Size is the size of the memcached deployment
 	Size int32 `json:"size"`
+	// This is made up of 3 fields:
+	// - the name of the variable from within the operator, "Size"
+	// - the date type, int32
+	// - the variable name, as specified from within the cr (or it's yaml file).
+	// This essentially maps a value in a cr.yaml file to a golang variable, which 
+	// can then be used inside the operator's golang code
 }
 
 // MemcachedStatus defines the observed state of Memcached
@@ -25,6 +33,8 @@ type MemcachedStatus struct {
 
 	// Nodes are the names of the memcached pods
 	Nodes []string `json:"nodes"`
+	// Similar as before, but 'nodes' is the info reported back from the instantiated cr object itself. 
+	// it's displayed when you run: kubctl get cr-type cr-name -o yaml
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
