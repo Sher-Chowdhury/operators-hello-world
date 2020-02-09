@@ -71,6 +71,18 @@ kubectl create -f deploy/operator.yaml
 This will end up creating the operator pod, which in turn will create the default pod as specified in the controller.go file. by default this is a busybox pod. 
 
 
+You can see a copy of this file at top level - wordpress_controller-sher-sample.go
+
+
+
+
+
+
+
+
+
+
+
 
 
 
