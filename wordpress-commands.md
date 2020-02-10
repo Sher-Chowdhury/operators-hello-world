@@ -65,7 +65,7 @@ Then deploy operator along with it's dependencies:
 kubectl create -f deploy/service_account.yaml
 kubectl create -f deploy/role.yaml
 kubectl create -f deploy/role_binding.yaml
-kubectl create -f deploy/operator.yaml
+kubectl create -f deploy/operator.yaml    # alternatively run:   operator-sdk run --local --namespace=default
 ```
 
 This will end up creating the operator pod, which in turn will create the default pod as specified in the controller.go file. by default this is a busybox pod. 
@@ -73,6 +73,8 @@ This will end up creating the operator pod, which in turn will create the defaul
 
 You can see a copy of this file at top level - wordpress_controller-sher-sample.go
 
+
+Now let's add a custom setting in our crd, e.g. image-name. 
 
 
 
